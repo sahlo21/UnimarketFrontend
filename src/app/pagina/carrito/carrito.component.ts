@@ -13,19 +13,19 @@ export class CarritoComponent {
   constructor(private carritoService: CarritoService, private productoService: ProductoService) {
     this.productos = [];
     this.valorTotal = 0;
-
     const listaCodigos = this.carritoService.listar();
-
     if (listaCodigos.length > 0) {
       for (let cod of listaCodigos) {
         this.productoService.obtenerProducto(cod).subscribe({
           next: data => {
             const producto = data.respuesta;
-            this.productos.push(new DetalleCompraDTO(producto, 1));
-            this.valorTotal += producto.precio;
+            if (producto != null) {
+              this.productos.push(new DetalleCompraDTO(producto, 1));
+              this.valorTotal += producto.precio;
+            }
           },
-          error: err => {
-            console.log(err.error);
+          error: error => {
+            console.log(error.error);
           }
         });
         
@@ -34,8 +34,3 @@ export class CarritoComponent {
   }
 }
 
-
-//if (producto != null) {
-//  this.productos.push(new DetalleCompraDTO(producto, 1));
-  //this.valorTotal += producto.precio;
-//}

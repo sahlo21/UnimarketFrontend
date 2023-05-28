@@ -1,7 +1,6 @@
 <div class="card p-4">
     <div class="mb-3">
-        <button type="button" class="btn btn-success me-2" routerLink="/crear_producto">
-            Crear</button>
+        <button type="button"> <i class="btn btn-success me-2" routerLink="/crear-producto"></i> Crear</button>
         <button type="button" class="btn btn-danger" [disabled]="seleccionados.length == 0"
                         data-bs-toggle="modal" data-bs-target="#borrar"><i class="fa-solid fa-trash me-1"></i>
                         Eliminar {{textoBtnEliminar}}</button>
@@ -10,6 +9,7 @@
         <thead>
             <tr>
                 <th></th>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Precio</th>
@@ -23,6 +23,9 @@
                 <td><input #check class="form-check-input" type="checkbox" (change)="seleccionar(item,
                     check.checked)" /></td>
                 <td>
+                    <p>{{item.codigo}}</p>
+                </td>
+                <td>
                     <p>{{item.nombre}}</p>
                 </td>
                 <td>
@@ -34,9 +37,9 @@
                 <td>
                     <p>{{item.unidades}}</p>
                 </td>
-                <td><img [src]="item.imagen[0]" width="120" /> </td>
+                <td><img [src]="item.imagenes[0]" width="120" /> </td>
                 <td>
-                    <p>{{item.categoria}}</p>
+                    <p>{{item.categorias}}</p>
                 </td>
                 <td>
                     <button type="button" class="btn btn-warning rounded-circle me-2" 

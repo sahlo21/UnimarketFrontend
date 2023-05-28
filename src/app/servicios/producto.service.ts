@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ProductoGetDTO } from '../modelo/producto-get-dto';
+import { ProductoGetDTO } from '../modelo/ProductoGetDTO';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MensajeDTO } from '../modelo/mensaje-dto';
-import { ProductoDTO } from '../modelo/producto-dto';
+import { SharedService } from './shared.service';
+import { ProductoDTO } from '../modelo/ProductoDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class ProductoService {
   }
 
   getProductos(): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.apiUrl}/listar`);
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/listarProductos`);
   }
 
   public agregarProducto(producto: ProductoDTO): Observable<MensajeDTO>{
@@ -26,7 +27,7 @@ export class ProductoService {
   }
 
   public eliminarProducto(codigoProducto: number): Observable<MensajeDTO> {
-    return this.http.delete<MensajeDTO>(`${this.apiUrl}/${codigoProducto}`);
+    return this.http.delete<MensajeDTO>(`${this.apiUrl}/eliminar/${codigoProducto}`);
   }
 
   public obtenerProducto(codigoProducto: number): Observable<MensajeDTO> {
@@ -36,4 +37,20 @@ export class ProductoService {
   public categorias():Observable<any> {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/categorias`);
   }
+
+  public listarProductosNombre(cadena: String): Observable<MensajeDTO>{
+    console.log(cadena);
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/listarProductosNombre/${cadena}`);
+  }
+
+  getProductosVendedor(codigoUsuario: String): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/misproductos/${codigoUsuario}`);
+  }
+
+
+
+
+
 }
+
+

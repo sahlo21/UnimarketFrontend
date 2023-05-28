@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ProductoDTO } from 'src/app/modelo/producto-dto';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductoDTO } from 'src/app/modelo/ProductoDTO';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { Alerta } from 'src/app/modelo/alerta';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-crear-producto',
   templateUrl: './crear-producto.component.html',
   styleUrls: ['./crear-producto.component.css']
 })
+
 export class CrearProductoComponent {
   alerta!: Alerta;
   archivos!: FileList;
@@ -19,27 +22,32 @@ export class CrearProductoComponent {
   esEdicion: boolean;
   codigoProducto: number;
   txtBoton: string = "Crear Producto";
+  email:any;
+  codigoUsuario:any;
 
   constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,
     
-    private productoService: ProductoService, private route: ActivatedRoute, private router: Router) {
+    private productoService: ProductoService, private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService,private token: TokenService) {
     this.producto = new ProductoDTO();
     this.codigoProducto = 0;
     this.categorias = [];
     this.esEdicion = false;
+    this.email=this.token.getEmail();
 
     this.route.params.subscribe(params => {
       this.codigoProducto = params["codigo"];
-      this.productoService.obtenerProducto(this.codigoProducto).subscribe({
-        next: data => {
-          const objetoProducto = data.respuesta;
-          if (objetoProducto != null) {
-            this.producto = objetoProducto;
-            this.txtBoton = 'Editar Producto';
-          }
+if(this.codigoProducto!= undefined){
+  this.productoService.obtenerProducto(this.codigoProducto).subscribe({
+    next: data => {
+      const objetoProducto = data.respuesta;
+      if (objetoProducto != null) {
+        this.producto = objetoProducto;
+        this.txtBoton = 'Editar Producto';
+      }
 
-        }
-      });
+    }
+  });
+}
     });
     this.productoService.categorias().subscribe(
       respuesta => {
@@ -53,6 +61,10 @@ export class CrearProductoComponent {
   
 
   ngOnInit(): void {
+    this.usuarioService.cedula(this.email).subscribe((valor: any) => {
+      this.codigoUsuario = valor.respuesta;
+      this.producto.codigoVendedor=this.codigoUsuario;
+    });
   }
 
   onFileChange(event: any) {
@@ -65,6 +77,10 @@ export class CrearProductoComponent {
     console.log(this.producto);
     const objeto = this;
     if (this.archivos != null && this.archivos.length > 0) {
+      this.usuarioService.cedula(this.email).subscribe((valor: any) => {
+        this.codigoUsuario = valor.respuesta;
+      });
+      this.producto.codigoVendedor = this.codigoUsuario;
         this.productoService.agregarProducto(this.producto).subscribe({
           next: data => {
             objeto.alerta = new Alerta(data.respuesta, "success");
@@ -74,7 +90,6 @@ export class CrearProductoComponent {
         }
       });
       this.router.navigate(["/gestion-productos"]);
-      console.log(this.producto);
     } else {
       objeto.mensajeAlerta = 'Debe seleccionar al menos una imagen';
     }
@@ -86,7 +101,6 @@ export class CrearProductoComponent {
     this.productoService.categorias().subscribe({
       next: data => {
         this.categorias = data.respuesta;
-        console.log(data);
       },
       error: error => {
         console.log(error.error);
@@ -103,7 +117,7 @@ export class CrearProductoComponent {
       this.imagenService.subir(formData).subscribe({
         next: data => {
           console.log("imagen subida")
-          objeto.imagen.push(data.respuesta.url);
+          objeto.imagenes.push(data.respuesta.url);
         },
         error: error => {
           console.log(error.error);

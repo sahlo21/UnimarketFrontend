@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de productos</title>
+    <link rel="stylesheet" href="listar-todos-productos.component.css">
+</head>
+<body>
+    <h1>Tienda de productos</h1>
+
+    <div class="products-container">
+        <div class="product" *ngFor="let item of productos">
+            <a routerLink="/detalle-producto/{{item.codigo}}" class="detalle-producto">
+                <img src={{item.imagenes[0]}} alt={{item.nombre}}>
+            </a>
+            <h2 class="product-title">{{item.nombre}}</h2>
+            <!-- <p class="product-description">{{item.descripcion}}</p> -->
+            <p class="product-price">${{item.precio}}</p>
+        </div>
+    </div>
+
+</body>
+</html>

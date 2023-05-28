@@ -1,4 +1,4 @@
-import { ProductoGetDTO } from "./producto-get-dto";
+import { ProductoGetDTO } from "./ProductoGetDTO";
 
 export class DetalleCompraDTO{
     producto: ProductoGetDTO;

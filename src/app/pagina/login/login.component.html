@@ -1,30 +1,28 @@
-
-<form #f="ngForm" (ngSubmit)="iniciarSesion()" >
-    <div class="mb-3 row">
+<div class="card p-5">
+    <form #f="ngForm" (ngSubmit)="login()">
+      <div class="mb-3 row">
         <label class="col-sm-2 col-form-label">Email: </label>
         <div class="col-sm-10">
-
-            <input #email="ngModel" class="form-control" [ngClass]="email.invalid &&
-
-            (email.dirty || email.touched) ? 'is-invalid' : ''" type="email" name="email" [(ngModel)]="sesion.email" email
-                 />
-
+          <input #email="ngModel" class="form-control"
+            [ngClass]="email.invalid && (email.dirty || email.touched) ? 'is-invalid' : ''"
+            type="email" name="email" [(ngModel)]="usuario.email" required email />
         </div>
-    </div>
-
-    <div class="mb-3 row">
+      </div>
+      <div class="mb-3 row">
         <label class="col-sm-2 col-form-label">Contraseña: </label>
         <div class="col-sm-10">
-            <input #password="ngModel" class="form-control" [ngClass]="password.invalid && (password.dirty || password.touched)
-             ? 'is-invalid' : ''"
-            type="password" name="password"[(ngModel)]="sesion.password" required />
-
+          <input #password="ngModel" class="form-control"
+            [ngClass]="password.invalid && (password.dirty || password.touched) ? 'is-invalid' : ''"
+            type="password" name="password" [(ngModel)]="usuario.password" required />
         </div>
-    </div>
-
-    <button type="submit" [disabled]="f.invalid" class="btn btn-primary">
-        <i class="fa-solid fa-circle-plus me-1"></i>
-        Iniciar Sesion
-    </button>
-    <app-alerta [alerta]="alerta"></app-alerta>
-</form>
+      </div>
+      <button type="submit" [disabled]="f.invalid" class="btn btn-primary">
+        <i class="fa-solid fa-sign-in me-1"></i>
+        Iniciar sesión
+      </button>
+      <div class="forget_password">
+        <p>¿Olvidaste tu contraseña?<span><a routerLink="/recuperarContrasena">Reestablecer contraseña</a></span></p>
+      </div>
+      <app-alerta [alerta]="alerta"></app-alerta>
+    </form>
+  </div>

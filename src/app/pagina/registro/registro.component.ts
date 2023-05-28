@@ -30,7 +30,7 @@ export class RegistroComponent {
   }
 
   public sonIguales(): boolean {
-    return this.usuario.contrasena == this.usuario.confirmaPassword;
+    return this.usuario.password == this.usuario.confirmaPassword;
   }
 
 }

@@ -1,10 +1,10 @@
 export class UsuarioDTO {
-
-nombre:string = "";
-email:string = "";
-contrasena:string = "";
-direccion:string = "";
-telefono:string = "";
-confirmaPassword = "";
-
-}
+   
+    nombre:string = "";
+    email:string = "";
+    password:string = "";
+    direccion:string = "";
+    telefono:string = "";
+    confirmaPassword = "";
+    
+    }

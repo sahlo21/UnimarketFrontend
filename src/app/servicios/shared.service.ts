@@ -10,6 +10,7 @@ export class SharedService {
   objeto: any;
   usuario: UsuarioDTO | null = null;
   usuarioSubject: BehaviorSubject<UsuarioDTO | null> = new BehaviorSubject<UsuarioDTO | null>(null);
+  email: any;
 
   private objetoSubject = new Subject<any>();
   objeto$ = this.objetoSubject.asObservable();

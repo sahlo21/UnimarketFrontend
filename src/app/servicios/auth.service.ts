@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SesionDTO } from '../modelo/sesion-dto';
 import { UsuarioDTO } from '../modelo/usuario-dto';
-import { MensajeDTO } from '../modelo/mensaje-dto';
 import { Observable } from 'rxjs';
+import { MensajeDTO } from '../modelo/mensaje-dto';
+import { SesionDTO } from '../modelo/sesion-dto';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   private authURL = "http://localhost:8083/api/auth";
   constructor(private http: HttpClient) { }
 
@@ -18,5 +17,9 @@ export class AuthService {
 
   public login(sesion:SesionDTO):Observable<MensajeDTO>{
     return this.http.post<MensajeDTO>(`${this.authURL}/login`, sesion);
+  }
+
+  public obtenerUsuarioLogueado(): Observable<UsuarioDTO> {
+    return this.http.get<UsuarioDTO>(`${this.authURL}/auth/usuario`);
   }
 }

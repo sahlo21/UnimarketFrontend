@@ -45,7 +45,7 @@
                 <input #password="ngModel" class="form-control" [ngClass]="password.invalid &&
 
 (confirmacion.dirty || confirmacion.touched) || !sonIguales() ? 'is-invalid' : ''" type="password" name="password"
-                    [(ngModel)]="usuario.contrasena" required />
+                    [(ngModel)]="usuario.password" required />
 
             </div>
         </div>
