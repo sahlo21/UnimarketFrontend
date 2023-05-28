@@ -19,6 +19,7 @@ export class CrearProductoComponent {
   archivos!: FileList;
   categorias: string[];
   producto: ProductoDTO;
+  
   esEdicion: boolean;
   codigoProducto: number;
   txtBoton: string = "Crear Producto";
@@ -74,6 +75,38 @@ if(this.codigoProducto!= undefined){
   }
 
   public crearProducto() {
+   
+
+    const productoAux = new ProductoDTO();
+    productoAux.nombre=this.producto.nombre;
+    productoAux.precio=this.producto.precio;
+    productoAux.codigoVendedor=this.producto.codigoVendedor;
+    productoAux.unidades=this.producto.unidades;
+    productoAux.descripcion=this.producto.descripcion;
+    productoAux.imagenes=this.producto.imagenes;
+
+    const data = {
+      nombre: this.producto.nombre,
+      descripcion: this.producto.descripcion,
+      unidades: this.producto.unidades,
+      precio: this.producto.unidades,
+      codigoVendedor: this.producto.codigoVendedor,
+      imagenes: this.producto.imagenes,
+      categorias: [this.producto.categorias]
+    };
+
+
+   
+
+    
+    const jsonData = JSON.stringify(data);
+    console.log("json"+jsonData);
+    const proazu = JSON.parse(jsonData);
+    
+    console.log(proazu);
+     
+    this.producto=proazu;
+
     console.log(this.producto);
     const objeto = this;
     if (this.archivos != null && this.archivos.length > 0) {
