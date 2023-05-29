@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MetodoPagoServicioService{
-  private catURL = "http://localhost:8083/api/producto";
+  private catURL = "https://unimarket-production-bfc8.up.railway.app/api/producto";
   constructor(private http: HttpClient) { }
   public listar(): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.catURL}/mediopago`);
