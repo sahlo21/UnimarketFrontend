@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DetalleCompraDTO } from 'src/app/modelo/detalle-compra-dto';
+
 import { CarritoService } from 'src/app/servicios/carrito.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 @Component({
@@ -33,4 +34,3 @@ export class CarritoComponent {
     }
   }
 }
-

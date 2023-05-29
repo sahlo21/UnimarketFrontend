@@ -31,12 +31,16 @@ export class ProductoService {
   }
 
   public obtenerProducto(codigoProducto: number): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.apiUrl}/${codigoProducto}`);
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/obtener/${codigoProducto}`);
   }
   
   public categorias():Observable<any> {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/categorias`);
   }
+  public mediopago():Observable<any> {
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/mediopago`);
+  }
+
 
   public listarProductosNombre(cadena: String): Observable<MensajeDTO>{
     console.log(cadena);
@@ -47,10 +51,18 @@ export class ProductoService {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/misproductos/${codigoUsuario}`);
   }
 
+  getProductosMod(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/listarMod`);
+  }
+
+  cambiarEstado(codigoProducto: number):Observable<MensajeDTO>{
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/estado/${codigoProducto}`);
 
 
-
-
+  }
+  public editarProducto(codigoProducto: number, producto: ProductoDTO): Observable<MensajeDTO>{
+    return this.http.put<MensajeDTO>(`${this.apiUrl}/actualizar/${codigoProducto}`, producto );
+  }
 }
 
 

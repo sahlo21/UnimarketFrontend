@@ -1,43 +1,48 @@
 <div class="container">
-    <div class="column">
-      <h1>Detalle de Compra</h1>
-  
-      <div class="delivery-method">
-        <h3>¿Cómo quieres recibir o retirar tu compra?</h3>
-        <div class="address-section">
-          <p>Domicilio</p>
-          <p>Manzana D # N 1-SN</p>
-          <p>Villa Hermosa - Armenia, Quindio</p>
-          <p><a class="edit-link" href="#">Editar o elegir otro</a></p>
-        </div>
-        <button class="action-button">Recibir compra</button>
-      </div>
-      
-      <div class="pickup-info">
-        <h3>Retirar compra</h3>
-        <p>Retiro en agencias de Mercado Libre</p>
-        <p>Llega el lunes</p>
-        <p>Gratis<span class="new-badge">NUEVO</span></p>
-        <p>Beneficio Mercado Puntos</p>
+
+  <div class="column">
+    <h1>Detalle de Compra</h1>
+
+    <div class="delivery-method">
+      <h3>Nombre de quien recibe</h3>
+      <div class="address-section">
+        <p>{{usuario?.nombre}}</p>
+        <h3>Dirección</h3>
+        <p>{{usuario?.direccion}}</p>
+        <h3>Teléfono</h3>
+        <p>{{usuario?.telefono}}</p>
+        <h3>Ciudad</h3>
+        <p>{{usuario?.ciudad}}</p>
       </div>
     </div>
-  
-    <div class="column">
-      <div class="product-info">
-        <h2>Atornillador 110-120v 60hz 280w 0-750rpm</h2>
-        <p>Color: Amarillo Frecuencia: 60 Hz Voltaje: 110V - 120V</p>
-        <p>Cantidad: 1</p>
-        <p>Producto</p>
-        <p>$152.940</p>
-      </div>
-  
-      <div class="total-info">
-        <p>Pagas</p>
-        <p>$152.940</p>
-      </div>
-  
-      <button class="continue-button">Continuar</button>
+    
+    <div class="pickup-info">
+      <h3>Elija el medio de pago</h3>
+      <select class="form-control">
+        <option *ngFor="let item of codigo" >{{ item }}</option>
+      </select>
     </div>
   </div>
-  
-  
+
+  <div class="column">
+    <div class="product-info">
+      <h2>{{producto.nombre}}</h2><br>
+
+      <ng-container *ngIf="producto.imagenes && producto.imagenes.length > 0">
+        <img [src]="producto.imagenes[0]" alt="Imagen del producto" class="product-image">
+      </ng-container>
+
+     <h3>Descripcion:</h3>  <p>{{producto.descripcion}}</p>
+    </div>
+
+    <div class="total-info">
+      <p>Total a pagar</p>
+      <p>${{producto.precio}}</p>
+    </div>
+
+    <button class="continue-button" (click)="(realizarCompra())">Comprar</button>
+    <span class="button-separator"></span>
+    <button class="agregar-button" >Agregar al carrito</button >
+  </div>
+</div>
+

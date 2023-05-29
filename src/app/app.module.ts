@@ -1,3 +1,4 @@
+
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -17,9 +18,10 @@ import { SharedService } from './servicios/shared.service';
 import { ListarTodosProductosComponent } from './pagina/listar-todos-productos/listar-todos-productos.component';
 import { DetallePComponent } from './pagina/detalle-p/detalle-p.component';
 import { CompraComponent } from './pagina/compra/compra.component';
+import { ListaUsuariosComponent } from './pagina/lista-usuarios/lista-usuarios.component';
+import { ListaProductosComponent } from './pagina/lista-productos/lista-productos.component';
 import { ForgetPasswordComponent } from './pagina/forget-password/forget-password.component';
 import { RestorePasswordComponent } from './pagina/restore-password/restore-password.component';
-
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { RestorePasswordComponent } from './pagina/restore-password/restore-pass
     ListarTodosProductosComponent,
     DetallePComponent,
     CompraComponent,
+    ListaUsuariosComponent,
+    ListaProductosComponent,
     ForgetPasswordComponent,
     RestorePasswordComponent
   ],

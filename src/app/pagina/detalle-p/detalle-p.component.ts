@@ -22,7 +22,7 @@ numero:number=0;
     this.producto=this.producto;
   }
 
-  ngOnInit(): void {
+ngOnInit(): void {
 const url: string = window.location.href; 
 const segments: string[] = url.split('/');
 

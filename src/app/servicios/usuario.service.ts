@@ -16,7 +16,7 @@ export class UsuarioService {
   }
 
   public obtener(codigo: number): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.userUrl}/${codigo}`);
+    return this.http.get<MensajeDTO>(`${this.userUrl}/obtener/${codigo}`);
   }
 
   public eliminar(codigo: number): Observable<MensajeDTO> {
@@ -39,7 +39,7 @@ export class UsuarioService {
   }
 
   public cambiarConstrasenaRecuperada( emailPerson:string, passwordDTO: PasswordDTO): Observable<MensajeDTO> {
-    return this.http.put<MensajeDTO>(`${this.userUrl}/${emailPerson}`, passwordDTO);
+    return this.http.put<MensajeDTO>(`${this.userUrl}/cambiarContrasenaRecuperada/${emailPerson}`, passwordDTO);
   }
   public recuperarContrasena(email:string): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.userUrl}/recuperarContrasena`, email);

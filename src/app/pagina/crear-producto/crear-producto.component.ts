@@ -19,7 +19,6 @@ export class CrearProductoComponent {
   archivos!: FileList;
   categorias: string[];
   producto: ProductoDTO;
-  
   esEdicion: boolean;
   codigoProducto: number;
   txtBoton: string = "Crear Producto";
@@ -27,8 +26,9 @@ export class CrearProductoComponent {
   codigoUsuario:any;
 
   constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,
-    
-    private productoService: ProductoService, private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService,private token: TokenService) {
+
+    private productoService: ProductoService, private route: ActivatedRoute, private router: Router,
+    private usuarioService: UsuarioService,private token: TokenService) {
     this.producto = new ProductoDTO();
     this.codigoProducto = 0;
     this.categorias = [];
@@ -59,9 +59,14 @@ if(this.codigoProducto!= undefined){
       }
     );
   }
-  
+
 
   ngOnInit(): void {
+
+    if(this.token.getEmail()=="juesnube@gmail.com"){
+      this.email="ADMINISTRADOR";
+      this.router.navigate(['lista-usuarios']);
+    }
     this.usuarioService.cedula(this.email).subscribe((valor: any) => {
       this.codigoUsuario = valor.respuesta;
       this.producto.codigoVendedor=this.codigoUsuario;
@@ -75,8 +80,6 @@ if(this.codigoProducto!= undefined){
   }
 
   public crearProducto() {
-   
-
     const productoAux = new ProductoDTO();
     productoAux.nombre=this.producto.nombre;
     productoAux.precio=this.producto.precio;
@@ -114,14 +117,34 @@ if(this.codigoProducto!= undefined){
         this.codigoUsuario = valor.respuesta;
       });
       this.producto.codigoVendedor = this.codigoUsuario;
+     
+
+        if(this.txtBoton === 'Editar Producto'){
+          console.log("si entre a la condicción." , this.codigoProducto);
+          this.productoService.editarProducto(this.codigoProducto,this.producto).subscribe({
+            next: data => {
+
+              objeto.alerta = new Alerta(data.respuesta, "success");
+            },
+            error: error => {
+              objeto.alerta = new Alerta(error.error.respuesta, "danger");
+          }
+          });
+
+      }else{
+        console.log("No entre a la condicción.");
         this.productoService.agregarProducto(this.producto).subscribe({
           next: data => {
+
             objeto.alerta = new Alerta(data.respuesta, "success");
           },
           error: error => {
             objeto.alerta = new Alerta(error.error.respuesta, "danger");
         }
-      });
+        });
+    }
+
+
       this.router.navigate(["/gestion-productos"]);
     } else {
       objeto.mensajeAlerta = 'Debe seleccionar al menos una imagen';

@@ -17,14 +17,9 @@ export class AppComponent {
   email: string = "";
   mostrarProductos: boolean = false;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private sharedService: SharedService,
-    private tokenService: TokenService, private sesionService: SesionService) { }
+  constructor(private router: Router, private tokenService: TokenService, private sesionService: SesionService) { }
 
   ngOnInit(): void {
-    // this.isLogged = this.tokenService.isLogged();
-    // if(this.isLogged){
-    // this.email = this.tokenService.getEmail();
-    // }
     const objeto = this;
     this.sesionService.currentMessage.subscribe({
       next: data => {
@@ -32,6 +27,10 @@ export class AppComponent {
       }
     });
     this.actualizarSesion(this.tokenService.isLogged());
+    if(this.email=="admin@gmail.com"){
+      this.email="ADMINISTRADOR";
+      this.router.navigate(['lista-productos']);
+    }
   }
 
   private actualizarSesion(estado: boolean) {
@@ -40,6 +39,10 @@ export class AppComponent {
       this.email = this.tokenService.getEmail();
     } else {
       this.email = "";
+    }
+    if(this.email=="admin@gmail.com"){
+      this.email="ADMINISTRADOR";
+      this.router.navigate(['lista-productos']);
     }
   }
 
