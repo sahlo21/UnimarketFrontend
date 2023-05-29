@@ -1,19 +1,39 @@
 <form #f="ngForm">
     <div class="mb-3 row">
-        <label>Nombre: </label>
-        <input type="text" name="nombre" [(ngModel)]="producto.nombre" required />
+        <label class="col-sm-2 col-form-label">Nombre: </label>
+        <div class="col-sm-10">
+            <input #nombre="ngModel" class="form-control" [ngClass]="nombre.invalid &&
+
+(nombre.dirty || nombre.touched) ? 'is-invalid' : ''" type="text" name="nombre" [(ngModel)]="producto.nombre" required
+                maxlength="50" />
+        </div>
     </div>
     <div class="mb-3 row">
-        <label>Descripcion: </label>
-        <textarea name="descripcion" [(ngModel)]="producto.descripcion" required></textarea>
+        <label class="col-sm-2 col-form-label">Descripcion: </label>
+        <div class="col-sm-10">
+            <textarea #descripcion="ngModel" class="form-control" [ngClass]="descripcion.invalid &&
+
+        (descripcion.dirty || descripcion.touched) ? 'is-invalid' : ''" type="text" name="descripcion"
+                [(ngModel)]="producto.descripcion" required maxlength="50"></textarea>
+        </div>
     </div>
     <div class="mb-3 row">
-        <label>Precio: </label>
-        <input type="number" name="precio" [(ngModel)]="producto.precio" required />
+        <label class="col-sm-2 col-form-label">Precio: </label>
+        <div class="col-sm-10">
+            <input #precio="ngModel" class="form-control" [ngClass]="precio.invalid &&
+
+        (precio.dirty || precio.touched) ? 'is-invalid' : ''" type="number" name="precio" [(ngModel)]="producto.precio"
+                required maxlength="10" />
+        </div>
     </div>
     <div class="mb-3 row">
-        <label>Unidades: </label>
-        <input type="number" name="unidades" [(ngModel)]="producto.unidades" required />
+        <label class="col-sm-2 col-form-label">Unidades: </label>
+        <div class="col-sm-10">
+            <input #unidades="ngModel" class="form-control" [ngClass]="unidades.invalid &&
+
+        (unidades.dirty || unidades.touched) ? 'is-invalid' : ''" type="number" name="unidades"
+                [(ngModel)]="producto.unidades" required maxlength="10" />
+        </div>
     </div>
     <div class="mb-3 row">
         <label class="col-sm-2 col-form-label">Imagen: </label>

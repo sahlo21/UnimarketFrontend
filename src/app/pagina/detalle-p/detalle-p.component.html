@@ -10,13 +10,13 @@
     <h2 class="producto-nombre">{{producto.nombre}}</h2>
     <p class="producto-descripcion">{{producto.descripcion}}</p>
     <div class="producto-detalle">
-      <p><strong>Precio:</strong> ${{producto.precio}}</p>
-      <p><strong>Unidades:</strong> {{producto.unidades}}</p>
-      <p><strong>Categoría:</strong></p>
+      <p><strong></strong> {{producto.precio}}</p>
+      <p><strong></strong> {{producto.unidades}}</p>
+      <p><strong></strong></p>
       <ul>
         <!-- <li *ngFor="let categoria of producto.categorias">{{categoria}}</li> -->
       </ul>
     </div>
-    <button routerLink="/compra/{{numero}}" class="buy-button">Comprar</button >
+    <button routerLink="/compra/{{numero}}" class="buy-button">Realizar compra</button >
   </div>
 </div>

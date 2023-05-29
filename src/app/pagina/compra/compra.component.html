@@ -1,10 +1,10 @@
 <div class="container">
 
   <div class="column">
-    <h1>Detalle de Compra</h1>
+    <h1>Portal de compras</h1>
 
     <div class="delivery-method">
-      <h3>Nombre de quien recibe</h3>
+      <h3>Ingrese su datos personales</h3>
       <div class="address-section">
         <p>{{usuario?.nombre}}</p>
         <h3>Dirección</h3>
@@ -22,9 +22,9 @@
         <option *ngFor="let item of codigo" >{{ item }}</option>
       </select>
     </div>
-  </div>
 
-  <div class="column">
+
+  
     <div class="product-info">
       <h2>{{producto.nombre}}</h2><br>
 
@@ -42,7 +42,7 @@
 
     <button class="continue-button" (click)="(realizarCompra())">Comprar</button>
     <span class="button-separator"></span>
-    <button class="agregar-button" >Agregar al carrito</button >
+    <button class="agregar-button" >Llevar la carrito</button >
   </div>
 </div>
 
