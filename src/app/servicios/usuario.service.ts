@@ -9,7 +9,7 @@ import { PasswordDTO } from '../modelo/password-dto';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private userUrl = "https://unimarket-production-bfc8.up.railway.app/api/usuario";
+  private userUrl = "unimarket-production-bfc8.up.railway.app/api/usuario";
 
   constructor(private http: HttpClient,private shared: SharedService ) { 
     

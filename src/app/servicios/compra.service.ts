@@ -9,7 +9,7 @@ import { CompraDTO } from '../modelo/compraDTO';
 })
 export class CompraService {
 
-  private catURL = "https://unimarket-production-bfc8.up.railway.app/api/compra";
+  private catURL = "unimarket-production-bfc8.up.railway.app/api/compra";
   constructor(private http: HttpClient) { }
 
   public compra(compra: CompraDTO): Observable<MensajeDTO> {

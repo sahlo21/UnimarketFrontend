@@ -13,7 +13,7 @@ import { ProductoDTO } from '../modelo/ProductoDTO';
 
 export class ProductoService {
 
-  private apiUrl = "https://unimarket-production-bfc8.up.railway.app/api/producto";
+  private apiUrl = "unimarket-production-bfc8.up.railway.app/api/producto";
 
   constructor( private http:HttpClient) {   
   }

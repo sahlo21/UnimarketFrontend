@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class ImagenService {
-    private imgURL = "https://unimarket-production-bfc8.up.railway.app/api/imagenes";
+    private imgURL = "unimarket-production-bfc8.up.railway.app/api/imagenes";
     constructor(private http: HttpClient) { }
     public subir(imagen: FormData): Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.imgURL}/upload`, imagen);

@@ -8,7 +8,7 @@ import { SesionDTO } from '../modelo/sesion-dto';
   providedIn: 'root'
 })
 export class AuthService {
-  private authURL = "https://unimarket-production-bfc8.up.railway.app/api/auth";
+  private authURL = "unimarket-production-bfc8.up.railway.app/api/auth";
   constructor(private http: HttpClient) { }
 
   public registrar(usuario:UsuarioDTO):Observable<MensajeDTO>{
